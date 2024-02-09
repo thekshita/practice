@@ -14,8 +14,6 @@ st.title('🦜🔗 EquityEngine')
 
 query_service = QueryService()
 
-load_dotenv()
-os.environ['OPENAI_API_KEY'] = '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'
 
 def generate_response(question):
     resp = query_service.ask_agent(question=question)

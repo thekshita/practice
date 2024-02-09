@@ -11,7 +11,7 @@ CHAT_MODEL = 'gpt-3.5-turbo'
 class Agent:
 
     def __init__(self):
-        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL, api_key=os.getenv("OPENAI_API_KEY"))
+        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL)#, api_key=os.getenv("OPENAI_API_KEY"))
         self.agent_executor = self.create_agent_executor()
 
     def create_agent_executor(self):

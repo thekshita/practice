@@ -14,9 +14,10 @@ from query_service import QueryService
 st.title('🦜🔗 Quickstart App')
 \
 
-load_dotenv()
-os.environ['OPENAI_API_KEY'] = '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'
-openai_api_key = os.getenv('OPENAI_API_KEY')
+#load_dotenv()
+#os.environ['OPENAI_API_KEY'] = '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'
+#openai_api_key = os.getenv('OPENAI_API_KEY')
+OPENAI_API_KEY = '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'
 query_service = QueryService()
 
 def generate_response(question):

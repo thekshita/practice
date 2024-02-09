@@ -2,10 +2,11 @@ from langchain.agents import Tool, ConversationalChatAgent, AgentExecutor
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferWindowMemory
-from tools.q_and_a_tool import create_vector_db_tool
+from tools.QnA import create_vector_db_tool
 
 from utils import is_answer_formatted_in_json, output_response, transform_to_json
 CHAT_MODEL = 'gpt-3.5-turbo'
+OPENAI_API_KEY = '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'
 
 class Agent:
 

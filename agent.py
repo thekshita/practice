@@ -1,23 +1,17 @@
 from langchain.agents import Tool, ConversationalChatAgent, AgentExecutor
 
-from langchain.chat_models import ChatOpenAI, openai
+from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferWindowMemory
 from tools.QnA import create_vector_db_tool
-import os
-from dotenv import load_dotenv
 
 from utils import is_answer_formatted_in_json, output_response, _parse_source_docs
-
-
-load_dotenv()
-os.environ['OPENAI_API_KEY'] = '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'
+import os
 
 CHAT_MODEL = 'gpt-3.5-turbo'
-OPENAI_API_KEY = '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'
 class Agent:
 
     def __init__(self):
-        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL, api_key=OPENAI_API_KEY)
+        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL, api_key=os.getenv("OPENAI_API_KEY"))
         self.agent_executor = self.create_agent_executor()
 
     def create_agent_executor(self):

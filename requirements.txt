@@ -12,3 +12,4 @@ pydantic~=1.10.12
 faiss-cpu
 tiktoken
 streamlit
+FAISS-cpu==1.7.4

@@ -8,7 +8,7 @@ Created on Thu Feb  8 15:17:21 2024
 
 import streamlit as st
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from query_service import QueryService
 
 st.title('🦜🔗 Quickstart App')

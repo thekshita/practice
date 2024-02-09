@@ -1,17 +1,23 @@
 from langchain.agents import Tool, ConversationalChatAgent, AgentExecutor
-from langchain.chains import RetrievalQAWithSourcesChain
-from langchain.chat_models import ChatOpenAI
+
+from langchain.chat_models import ChatOpenAI, openai
 from langchain.memory import ConversationBufferWindowMemory
 from tools.QnA import create_vector_db_tool
+import os
+from dotenv import load_dotenv
 
-from utils import is_answer_formatted_in_json, output_response, transform_to_json
+from utils import is_answer_formatted_in_json, output_response, _parse_source_docs
+
+
+load_dotenv()
+os.environ['OPENAI_API_KEY'] = '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'
+
 CHAT_MODEL = 'gpt-3.5-turbo'
-OPENAI_API_KEY = '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'
-
+OPENAI_API_KEY = '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'
 class Agent:
 
     def __init__(self):
-        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL)
+        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL, api_key=OPENAI_API_KEY)
         self.agent_executor = self.create_agent_executor()
 
     def create_agent_executor(self):
@@ -72,8 +78,4 @@ class Agent:
             return response
 
 
-def _parse_source_docs(q_and_a_tool: RetrievalQAWithSourcesChain, query: str):
-    #original
-    #result = q_and_a_tool({"question": query})
-    result = q_and_a_tool({"question": query}, return_only_outputs=True)
-    return transform_to_json(result)
+

@@ -1,5 +1,5 @@
 import json
-
+from langchain.chains import RetrievalQAWithSourcesChain
 
 def output_response(response) -> None:
     if not response:
@@ -22,11 +22,12 @@ def format_escape_characters(s):
 
 
 def transform_to_json(result):
-    #original
-    #formatted_result_string = format_escape_characters(result["result"])
-    print(result)
     formatted_result_string = format_escape_characters(result["answer"]+result["sources"])
     return f"""
         {{
         "result": "{formatted_result_string}"
         }}"""
+
+def _parse_source_docs(q_and_a_tool: RetrievalQAWithSourcesChain, query: str):
+    result = q_and_a_tool({"question": query}, return_only_outputs=True)
+    return transform_to_json(result)

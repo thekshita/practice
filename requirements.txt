@@ -9,7 +9,7 @@ python-dotenv==1.0.0
 httpx
 transformers
 pydantic~=1.10.12
+faiss
 faiss-cpu
 tiktoken
 streamlit
-FAISS-cpu==1.7.4

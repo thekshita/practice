@@ -10,12 +10,12 @@ import os
 CHAT_MODEL = 'gpt-3.5-turbo'
 class Agent:
 
-    def __init__(self):
+    def __init__(self, option):
         self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL)#, api_key=os.getenv("OPENAI_API_KEY"))
-        self.agent_executor = self.create_agent_executor()
+        self.agent_executor = self.create_agent_executor(option)
 
-    def create_agent_executor(self):
-        q_and_a_tool = create_vector_db_tool(llm=self.llm)
+    def create_agent_executor(self, option):
+        q_and_a_tool = create_vector_db_tool(option, llm=self.llm)
         tools = [
             Tool(
                 name="Disability Services Office QA",

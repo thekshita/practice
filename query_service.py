@@ -5,8 +5,8 @@ from agent import Agent
 
 class QueryService:
 
-    def __init__(self):
-        self.agent = Agent()
+    def __init__(self, option):
+        self.agent = Agent(option)
 
     def ask_agent(self, question: str):
         try:

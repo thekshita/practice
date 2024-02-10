@@ -64,3 +64,17 @@ urls = [
 
 create_pkl("dso", urls)
            
+urls = [
+       "https://www.washington.edu/studentlife/living-dining/",
+       "https://hfs.uw.edu/Live/Undergraduate-Communities",
+       "https://hfs.uw.edu/live-on-campus/graduate-student-apartments",
+       "https://www.ielp.uw.edu/life-at-uw/housing/homestays",
+       "https://www.ielp.uw.edu/life-at-uw/housing/temporary-housing",
+       "https://uwifc.com/#!housing/c1lte",
+       "https://uwpanhellenic.com/",
+       "https://hfs.uw.edu/Eat/Resident-Dining",
+       "https://hfs.uw.edu/Eat/Residence-Hall-dining-plan",
+       "https://hfs.uw.edu/Eat/Apartment-dining-plan",
+       "https://hfs.uw.edu/Experience/Student-Jobs"
+   ]
+create_pkl("hfs", urls)

@@ -19,6 +19,23 @@ st.title("EquityEngine")
 USER_AVATAR = "👤"
 BOT_AVATAR = "🤖"
 
+page_bg_img = f"""
+<style>
+[data-testid="stAppViewContainer"] > .main {{
+background-image: url("https://i.postimg.cc/4xgNnkfX/Untitled-design.png");
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: local;
+}}
+[data-testid="stHeader"] {{
+background: rgba(0,0,0,0);
+}}
+</style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Ensure openai_model is initialized in session state
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -43,7 +60,7 @@ with st.sidebar:
         st.session_state.messages = []
         save_chat_history([])
     user_choice = st.radio("Select an option:", ("dso", "hfs"))
-    query_service = QueryService(user_choice)  
+    query_service = QueryService(user_choice) 
 
                
 # Display chat messages
@@ -51,6 +68,7 @@ for message in st.session_state.messages:
     avatar = USER_AVATAR if message["role"] == "user" else BOT_AVATAR
     with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
+        
         
 
 if prompt := st.chat_input("How can I help?"):
@@ -67,6 +85,7 @@ if prompt := st.chat_input("How can I help?"):
         message_placeholder.markdown(full_response)
     
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+
 
 # Save chat history after each interaction
 save_chat_history(st.session_state.messages)

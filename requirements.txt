@@ -9,3 +9,8 @@ python-dotenv==1.0.0
 httpx
 transformers
 faiss-cpu
+six==1.12.0
+typing-extensions==4.5.0
+urllib3<2
+textract==1.6.5
+llama-index==0.6.24

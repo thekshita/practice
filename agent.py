@@ -6,12 +6,13 @@ from tools.QnA import create_vector_db_tool
 
 from utils import is_answer_formatted_in_json, output_response, _parse_source_docs
 import os
+import streamlit as st
 
 CHAT_MODEL = 'gpt-3.5-turbo'
 class Agent:
 
     def __init__(self, option):
-        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL)#, api_key=os.getenv("OPENAI_API_KEY"))
+        self.llm = ChatOpenAI(temperature=0, model_name=CHAT_MODEL, api_key=st.secrets['OPENAI_API_KEY'])
         self.agent_executor = self.create_agent_executor(option)
 
     def create_agent_executor(self, option):

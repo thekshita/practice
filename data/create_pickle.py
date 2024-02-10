@@ -15,6 +15,7 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import CharacterTextSplitter
 import os
+import streamlit as st
 
 def create_pkl(category: str, urls: list):
     loaders = UnstructuredURLLoader(urls=urls)
@@ -25,8 +26,8 @@ def create_pkl(category: str, urls: list):
 
     docs = text_splitter.split_documents(data)
 
-    embeddings = OpenAIEmbeddings()
-    #embeddings = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
+    #embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(api_key=st.secrets['OPENAI_API_KEY'])
     vectorStore_openAI = FAISS.from_documents(docs, embeddings)
     
     with open(f"{category}_vectors.pkl", "wb") as f:

@@ -59,7 +59,7 @@ with st.sidebar:
     if st.button("Delete Chat History"):
         st.session_state.messages = []
         save_chat_history([])
-    user_choice = st.radio("Select an option:", ("dso", "hfs"))
+    user_choice = st.radio("Select an option:", ("General", "DSO", "HFS"))
     query_service = QueryService(user_choice) 
 
                

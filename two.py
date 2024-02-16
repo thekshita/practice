@@ -53,7 +53,7 @@ st.markdown(
 #st.markdown(page_bg_img, unsafe_allow_html=True)
 
 disclaimer_text = """
-This is a disclaimer. Please read it carefully before proceeding.
+This tool is not an exhaustive source of information pertinent to the University of Washington. It may sometimes produce erroneous results. It is recommended that you verify any information.
 """
 
 

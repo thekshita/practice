@@ -35,16 +35,6 @@ st.markdown(
                 [data-testid="stApp"] {{
                     background-color: #e8e3d3;
                 }}
-                .sidebar-content {{
-                    margin-top: 50px; /* Adjust top margin for content alignment */
-                }}
-                .sidebar-radio-group > div {{
-                    margin-top: 20px; /* Adjust the margin between buttons */
-                    color: white;
-                }}
-                .sidebar-radio-group label {{
-                    color: white !important; /* Change text color of radio button labels */
-                }}
             </style>
             """,
         unsafe_allow_html=True,
@@ -77,6 +67,14 @@ if "messages" not in st.session_state:
 
 # Sidebar with a button to delete chat history
 with st.sidebar:
+    st.markdown("""
+        <style>
+            .sidebar-content {
+                padding-top: 1000px;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+
     if st.button("Delete Chat History"):
         st.session_state.messages = []
         save_chat_history([])
@@ -86,7 +84,9 @@ with st.sidebar:
 
     query_service = QueryService(user_choice[6:-1]) 
 
-               
+with st.expander("Disclaimer"):
+    st.write(disclaimer_text)
+             
 # Display chat messages
 for message in st.session_state.messages:
     avatar = USER_AVATAR if message["role"] == "user" else BOT_AVATAR
@@ -110,8 +110,7 @@ if prompt := st.chat_input("How can I help?"):
     
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-with st.expander("Disclaimer"):
-    st.write(disclaimer_text)
+
     
 # Save chat history after each interaction
 save_chat_history(st.session_state.messages)

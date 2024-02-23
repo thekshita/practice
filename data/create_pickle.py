@@ -6,6 +6,8 @@ Created on Thu Feb  8 00:08:55 2024
 @author: deekshitadoli
 """
 
+#from dotenv import load_dotenv
+
 
 import pickle
 from langchain.vectorstores import FAISS

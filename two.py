@@ -73,7 +73,7 @@ def save_chat_history(messages):
 
 # Initialize or load chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = load_chat_history()
+    st.session_state.messages = []
 
 # Sidebar with a button to delete chat history
 with st.sidebar:
@@ -86,14 +86,16 @@ with st.sidebar:
 
     query_service = QueryService(user_choice[6:-1]) 
 
-               
+with st.expander("Disclaimer"):
+    st.write(disclaimer_text)
+    
 # Display chat messages
 for message in st.session_state.messages:
     avatar = USER_AVATAR if message["role"] == "user" else BOT_AVATAR
     with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
         
-        
+
 
 if prompt := st.chat_input("How can I help?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -110,8 +112,7 @@ if prompt := st.chat_input("How can I help?"):
     
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-with st.expander("Disclaimer"):
-    st.write(disclaimer_text)
+
     
 # Save chat history after each interaction
 save_chat_history(st.session_state.messages)
